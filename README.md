@@ -12,25 +12,15 @@ Projeto independente: banco, código e login próprios, sem nenhuma ligação co
 - **Produtos e planos**: catálogo com preço e forma de cobrança (mensal, anual ou único).
 - Acesso por senha única; instala no celular como app.
 
-## Publicar pela primeira vez
+## Publicação
 
-No computador, dentro da pasta do projeto:
+O sistema é publicado pela Cloudflare ligada ao GitHub: cada mudança enviada para a branch `main` entra no ar sozinha.
 
-```bash
-npm install
-npx wrangler login                          # abre o navegador para entrar na Cloudflare
-npx wrangler d1 create rundesk-interno      # cria o banco; copie o database_id que aparecer
-```
+Configuração (feita uma vez, no painel da Cloudflare):
 
-Cole o `database_id` no `wrangler.toml` (no lugar de `COLOQUE_AQUI_O_ID_DO_BANCO`). Depois:
-
-```bash
-npm run banco:producao                      # cria as tabelas
-npx wrangler secret put SENHA               # escolha a senha de acesso
-npm run publicar
-```
-
-O endereço sai no final, algo como `https://rundesk-interno.<sua-conta>.workers.dev`.
+1. Banco D1 `rundesk-interno` (o id já está no `wrangler.toml`).
+2. **Workers & Pages → Create → Import a repository** → `rundesk-interno`, com o comando de deploy `npm run publicar` (ele cria/atualiza as tabelas e publica).
+3. **Settings → Variables and Secrets**: segredo `SENHA` com a senha de acesso.
 
 ## Rodar no computador
 

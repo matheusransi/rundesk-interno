@@ -9,6 +9,5 @@ binding = "ASSETS"
 [[d1_databases]]
 binding = "DB"
 database_name = "rundesk-interno"
-# Troque pelo id que o comando `npx wrangler d1 create rundesk-interno` mostrar
-database_id = "COLOQUE_AQUI_O_ID_DO_BANCO"
+database_id = "7a47fd77-e3ad-41b9-b84a-89be2db5e71e"
 migrations_dir = "migrations"

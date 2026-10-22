@@ -6,7 +6,7 @@
     "dev": "wrangler dev",
     "banco:local": "wrangler d1 migrations apply rundesk-interno --local",
     "banco:producao": "wrangler d1 migrations apply rundesk-interno --remote",
-    "publicar": "wrangler deploy"
+    "publicar": "wrangler d1 migrations apply rundesk-interno --remote && wrangler deploy"
   },
   "devDependencies": {
     "wrangler": "^3.114.17"
