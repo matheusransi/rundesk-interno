@@ -6,10 +6,11 @@ Projeto independente: banco, código e login próprios, sem nenhuma ligação co
 
 ## O que tem
 
-- **Painel**: faturamento mensal (planos anuais contam 1/12 por mês; assinaturas em teste não contam), clientes ativos, funil por etapa e próximas ações (atrasadas em vermelho).
-- **Funil**: leads com etapa (novo, abordado, conversando, demo, piloto, ganho, perdido), próxima ação e data.
-- **Clientes e assinaturas**: quem paga, qual plano, valor cobrado, início e fim.
-- **Produtos e planos**: catálogo com preço e forma de cobrança (mensal, anual ou único).
+- **Visão geral**: receita mensal (MRR) e anual, clientes ativos, funil por etapa, taxa de conversão, próximas ações (atrasadas em destaque) e receita por produto.
+- **Funil de vendas**: quadro por etapa (novo, abordado, conversando, demo, piloto, ganho, perdido). No computador, arraste o lead entre as colunas; no celular, troque a etapa dentro do lead.
+- **Converter em cliente**: dentro do lead, cria o cliente e já abre a venda com o plano do produto de interesse.
+- **Clientes e assinaturas**: tabelas com busca, mensalidade e situação (em teste, ativa, cancelada). Planos anuais contam 1/12 por mês; assinaturas em teste não entram no faturamento.
+- **Produtos e preços**: cada produto com seus planos e quantos clientes ativos tem.
 - Acesso por senha única; instala no celular como app.
 
 ## Publicação
