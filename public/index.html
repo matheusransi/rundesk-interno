@@ -3,82 +3,109 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#09090b">
 <meta name="robots" content="noindex, nofollow">
 <title>Rundesk · Interno</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/icone.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icone.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/estilo.css">
 </head>
 <body>
 
+<!-- Login -->
 <section id="tela-login" class="login" hidden>
-  <form id="form-login" class="cartao">
-    <h1>Rundesk</h1>
-    <p class="sutil">Sistema interno</p>
-    <input type="password" name="senha" placeholder="Senha" autocomplete="current-password" required>
-    <button class="primario" type="submit">Entrar</button>
-    <p id="erro-login" class="erro" hidden></p>
+  <div class="login-grade" aria-hidden="true"></div>
+  <form id="form-login" class="login-cartao">
+    <div class="marca marca-grande"><span class="pontos"><i></i><i></i><i></i></span><span><b>run</b>desk</span></div>
+    <p class="login-sub">Central de operações</p>
+    <label class="campo">
+      <span>Senha de acesso</span>
+      <input type="password" name="senha" autocomplete="current-password" required autofocus>
+    </label>
+    <button class="btn btn-primario btn-largo" type="submit">Entrar</button>
+    <p id="erro-login" class="msg-erro" hidden></p>
   </form>
 </section>
 
-<div id="app" hidden>
-  <header class="topo">
-    <strong>Rundesk</strong>
-    <nav id="abas">
-      <button data-aba="painel" class="ativa">Painel</button>
-      <button data-aba="funil">Funil</button>
-      <button data-aba="clientes">Clientes</button>
-      <button data-aba="produtos">Produtos</button>
-    </nav>
-    <button id="sair" class="link">Sair</button>
+<!-- Aplicação -->
+<div id="app" class="app" hidden>
+  <aside class="lateral">
+    <div class="marca"><span class="pontos"><i></i><i></i><i></i></span><span><b>run</b>desk</span></div>
+    <span class="selo">Interno</span>
+    <nav id="menu" class="menu"></nav>
+    <div class="lateral-rodape">
+      <div class="status-sistema"><span class="ponto-vivo"></span> Sistema online</div>
+      <button id="sair" class="menu-item"><svg><use href="#i-sair"/></svg>Sair</button>
+    </div>
+  </aside>
+
+  <header class="topo-movel">
+    <div class="marca"><span class="pontos"><i></i><i></i><i></i></span><span><b>run</b>desk</span></div>
+    <button class="btn-icone" id="sair-movel" aria-label="Sair"><svg><use href="#i-sair"/></svg></button>
   </header>
 
-  <main>
-    <section data-tela="painel">
-      <div class="numeros" id="numeros"></div>
-      <h2>Funil de prospecção</h2>
-      <div class="barras" id="barras-funil"></div>
-      <h2>Próximas ações <span class="sutil">(atrasadas e próximos 7 dias)</span></h2>
-      <ul class="lista" id="proximas"></ul>
-    </section>
-
-    <section data-tela="funil" hidden>
-      <div class="acoes">
-        <div class="chips" id="filtro-status"></div>
-        <button class="primario" data-novo="leads">+ Lead</button>
+  <main class="conteudo">
+    <div class="cabecalho">
+      <div>
+        <p class="sobretitulo" id="sobretitulo"></p>
+        <h1 id="titulo"></h1>
       </div>
-      <ul class="lista" id="lista-leads"></ul>
-    </section>
-
-    <section data-tela="clientes" hidden>
-      <div class="acoes"><h2>Clientes</h2><button class="primario" data-novo="clientes">+ Cliente</button></div>
-      <ul class="lista" id="lista-clientes"></ul>
-      <div class="acoes"><h2>Assinaturas</h2><button class="primario" data-novo="assinaturas">+ Assinatura</button></div>
-      <ul class="lista" id="lista-assinaturas"></ul>
-    </section>
-
-    <section data-tela="produtos" hidden>
-      <div class="acoes"><h2>Produtos</h2><button class="primario" data-novo="produtos">+ Produto</button></div>
-      <ul class="lista" id="lista-produtos"></ul>
-      <div class="acoes"><h2>Planos e preços</h2><button class="primario" data-novo="planos">+ Plano</button></div>
-      <ul class="lista" id="lista-planos"></ul>
-    </section>
+      <div class="cabecalho-acoes" id="acoes"></div>
+    </div>
+    <div id="tela"></div>
   </main>
+
+  <nav class="abas-movel" id="abas-movel"></nav>
 </div>
 
-<dialog id="modal">
-  <form id="form-modal" method="dialog">
-    <h2 id="titulo-modal"></h2>
-    <div id="campos"></div>
-    <div class="rodape-modal">
-      <button type="button" id="excluir" class="perigo" hidden>Excluir</button>
+<!-- Painel lateral de edição -->
+<div class="gaveta-fundo" id="gaveta-fundo" hidden></div>
+<aside class="gaveta" id="gaveta" aria-hidden="true">
+  <form id="form-gaveta" novalidate>
+    <header class="gaveta-topo">
+      <div>
+        <p class="sobretitulo" id="gaveta-tipo"></p>
+        <h2 id="gaveta-titulo"></h2>
+      </div>
+      <button type="button" class="btn-icone" data-fechar aria-label="Fechar"><svg><use href="#i-x"/></svg></button>
+    </header>
+    <div class="gaveta-extra" id="gaveta-extra"></div>
+    <div class="gaveta-corpo" id="gaveta-campos"></div>
+    <footer class="gaveta-rodape">
+      <button type="button" class="btn btn-perigo" id="excluir" hidden>Excluir</button>
       <span class="espaco"></span>
-      <button type="button" id="cancelar">Cancelar</button>
-      <button type="submit" class="primario">Salvar</button>
-    </div>
+      <button type="button" class="btn" data-fechar>Cancelar</button>
+      <button type="submit" class="btn btn-primario">Salvar</button>
+    </footer>
   </form>
-</dialog>
+</aside>
+
+<div class="avisos" id="avisos"></div>
+
+<!-- Ícones -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-painel" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></symbol>
+    <symbol id="i-funil" viewBox="0 0 24 24"><rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="11" rx="1.5"/><rect x="17" y="4" width="4" height="7" rx="1.5"/></symbol>
+    <symbol id="i-clientes" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.8c1.8.7 3 2.4 3.5 5.2"/></symbol>
+    <symbol id="i-assinaturas" viewBox="0 0 24 24"><path d="M20 7H8a4 4 0 0 0 0 8"/><path d="m16 3 4 4-4 4"/><path d="M4 17h12a4 4 0 0 0 0-8"/><path d="m8 21-4-4 4-4"/></symbol>
+    <symbol id="i-produtos" viewBox="0 0 24 24"><path d="m12 2.8 8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4z"/><path d="m3.8 7.6 8.2 4.5 8.2-4.5M12 12.1v9"/></symbol>
+    <symbol id="i-sair" viewBox="0 0 24 24"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="m10 16-4-4 4-4M6 12h10"/></symbol>
+    <symbol id="i-mais" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-busca" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></symbol>
+    <symbol id="i-relogio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-receita" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+    <symbol id="i-alvo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".8"/></symbol>
+    <symbol id="i-raio" viewBox="0 0 24 24"><path d="M13 2.5 4.5 13.5H12l-1 8 8.5-11H12z"/></symbol>
+  </defs>
+</svg>
 
 <script src="/app.js"></script>
 </body>
