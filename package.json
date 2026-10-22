@@ -1,0 +1,15 @@
+{
+  "name": "rundesk-interno",
+  "version": "1.0.0",
+  "description": "Sistema interno da Rundesk",
+  "scripts": {
+    "dev": "wrangler dev",
+    "banco:local": "wrangler d1 migrations apply rundesk-interno --local",
+    "banco:producao": "wrangler d1 migrations apply rundesk-interno --remote",
+    "publicar": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.114.17"
+  },
+  "private": true
+}

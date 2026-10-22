@@ -1,0 +1,12 @@
+{
+  "name": "Rundesk Interno",
+  "short_name": "Rundesk",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    { "src": "/icone.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/icone.png", "sizes": "1080x1080", "type": "image/png" }
+  ]
+}

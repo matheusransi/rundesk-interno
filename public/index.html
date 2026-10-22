@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="robots" content="noindex, nofollow">
+<title>Rundesk · Interno</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/icone.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+
+<section id="tela-login" class="login" hidden>
+  <form id="form-login" class="cartao">
+    <h1>Rundesk</h1>
+    <p class="sutil">Sistema interno</p>
+    <input type="password" name="senha" placeholder="Senha" autocomplete="current-password" required>
+    <button class="primario" type="submit">Entrar</button>
+    <p id="erro-login" class="erro" hidden></p>
+  </form>
+</section>
+
+<div id="app" hidden>
+  <header class="topo">
+    <strong>Rundesk</strong>
+    <nav id="abas">
+      <button data-aba="painel" class="ativa">Painel</button>
+      <button data-aba="funil">Funil</button>
+      <button data-aba="clientes">Clientes</button>
+      <button data-aba="produtos">Produtos</button>
+    </nav>
+    <button id="sair" class="link">Sair</button>
+  </header>
+
+  <main>
+    <section data-tela="painel">
+      <div class="numeros" id="numeros"></div>
+      <h2>Funil de prospecção</h2>
+      <div class="barras" id="barras-funil"></div>
+      <h2>Próximas ações <span class="sutil">(atrasadas e próximos 7 dias)</span></h2>
+      <ul class="lista" id="proximas"></ul>
+    </section>
+
+    <section data-tela="funil" hidden>
+      <div class="acoes">
+        <div class="chips" id="filtro-status"></div>
+        <button class="primario" data-novo="leads">+ Lead</button>
+      </div>
+      <ul class="lista" id="lista-leads"></ul>
+    </section>
+
+    <section data-tela="clientes" hidden>
+      <div class="acoes"><h2>Clientes</h2><button class="primario" data-novo="clientes">+ Cliente</button></div>
+      <ul class="lista" id="lista-clientes"></ul>
+      <div class="acoes"><h2>Assinaturas</h2><button class="primario" data-novo="assinaturas">+ Assinatura</button></div>
+      <ul class="lista" id="lista-assinaturas"></ul>
+    </section>
+
+    <section data-tela="produtos" hidden>
+      <div class="acoes"><h2>Produtos</h2><button class="primario" data-novo="produtos">+ Produto</button></div>
+      <ul class="lista" id="lista-produtos"></ul>
+      <div class="acoes"><h2>Planos e preços</h2><button class="primario" data-novo="planos">+ Plano</button></div>
+      <ul class="lista" id="lista-planos"></ul>
+    </section>
+  </main>
+</div>
+
+<dialog id="modal">
+  <form id="form-modal" method="dialog">
+    <h2 id="titulo-modal"></h2>
+    <div id="campos"></div>
+    <div class="rodape-modal">
+      <button type="button" id="excluir" class="perigo" hidden>Excluir</button>
+      <span class="espaco"></span>
+      <button type="button" id="cancelar">Cancelar</button>
+      <button type="submit" class="primario">Salvar</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="/app.js"></script>
+</body>
+</html>
