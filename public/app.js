@@ -27,6 +27,8 @@ let resumo = null;
 let rota = 'painel';
 let busca = '';
 let filtro = 'todos';
+// Em /?demo tudo roda no navegador com dados fictícios (public/demo.js), sem tocar no banco.
+const modoDemo = new URLSearchParams(location.search).has('demo');
 
 // ---------- Utilidades ----------
 
@@ -66,6 +68,7 @@ function avisar(texto, erro = false) {
 }
 
 async function api(caminho, metodo = 'GET', corpo) {
+  if (modoDemo) return apiDemo(caminho, metodo, corpo);
   const r = await fetch('/api/' + caminho, {
     method: metodo,
     headers: corpo ? { 'Content-Type': 'application/json' } : {},
@@ -547,11 +550,26 @@ $('#form-login').addEventListener('submit', async (e) => {
   botao.disabled = false;
 });
 
-async function sair() { await api('logout', 'POST'); mostrarLogin(); }
+async function sair() {
+  if (modoDemo) { location.href = '/'; return; }
+  await api('logout', 'POST');
+  mostrarLogin();
+}
+$('#restaurar-demo').addEventListener('click', async () => {
+  if (!confirm('Voltar aos dados de exemplo? O que você mudou na demonstração será apagado.')) return;
+  demoRestaurar();
+  avisar('Exemplos restaurados');
+  await carregar();
+});
 $('#sair').addEventListener('click', sair);
 $('#sair-movel').addEventListener('click', sair);
 
 async function iniciar() {
+  if (modoDemo) {
+    document.title = 'Rundesk · Demonstração';
+    $('#faixa-demo').hidden = false;
+    $('.lateral .selo').textContent = 'Demo';
+  }
   try {
     rota = ROTAS[location.hash.slice(1)] ? location.hash.slice(1) : 'painel';
     await carregar();

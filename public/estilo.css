@@ -298,9 +298,26 @@ td.direita, th.direita { text-align: right; }
 .carregando { animation: aparecer .3s; }
 
 /* ---------- Responsivo ---------- */
+/* ---------- Modo demonstração ---------- */
+.login-demo { justify-self: center; font-size: 13px; color: var(--sutil); text-decoration: underline; text-decoration-color: var(--borda-forte); text-underline-offset: 3px; }
+.login-demo:hover { color: var(--acento); text-decoration-color: currentColor; }
+.faixa-demo {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  margin-bottom: 24px; padding: 10px 12px 10px 16px;
+  border: 1px solid rgb(251 191 36 / 0.35); border-radius: var(--raio);
+  background: linear-gradient(90deg, rgb(251 191 36 / 0.10), transparent 70%), var(--painel);
+  font-size: 13px; color: var(--sutil);
+}
+.faixa-demo[hidden] { display: none; }
+.faixa-demo b { color: var(--ambar); font-weight: 600; }
+.ponto-demo { width: 7px; height: 7px; border-radius: 50%; background: var(--ambar); box-shadow: 0 0 0 3px rgb(251 191 36 / 0.15); flex: none; }
+.faixa-texto { flex: 1; min-width: 200px; }
+.faixa-acoes { display: flex; gap: 8px; }
+.faixa-acoes .btn { height: 32px; font-size: 13px; color: var(--texto); text-decoration: none; }
+
 @media (max-width: 1100px) {
   .kpis { grid-template-columns: repeat(2, 1fr); }
-  .grade-painel { grid-template-columns: 1fr; }
+  .grade-painel { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 860px) {
   .lateral { display: none; }

@@ -13,6 +13,12 @@ Projeto independente: banco, código e login próprios, sem nenhuma ligação co
 - **Produtos e preços**: cada produto com seus planos e quantos clientes ativos tem.
 - Acesso por senha única; instala no celular como app.
 
+## Demonstração
+
+Em `/?demo` (ou pelo link "Ver demonstração" na tela de login) o sistema abre já preenchido com dados fictícios: 4 produtos, 9 planos, 16 leads em todas as etapas do funil, 8 clientes e 10 assinaturas. As datas são calculadas a partir do dia de hoje, então sempre há ações atrasadas, para hoje e para a semana.
+
+A demonstração roda inteira no navegador (`public/demo.js`): não pede senha, não chama a API e não toca no banco real. Dá para criar, editar, arrastar e excluir à vontade; as mudanças ficam salvas só naquele navegador e o botão "Restaurar exemplos" volta tudo ao início.
+
 ## Publicação
 
 O sistema é publicado pela Cloudflare ligada ao GitHub: cada mudança enviada para a branch `main` entra no ar sozinha.
@@ -34,5 +40,5 @@ npm run dev                                 # abre em http://localhost:8787
 ## Estrutura
 
 - `src/index.js`: API (`/api/...`) e login.
-- `public/`: telas (HTML, CSS e JS puros, sem framework).
+- `public/`: telas (HTML, CSS e JS puros, sem framework). `demo.js` é a API de mentira usada no modo demonstração.
 - `migrations/`: tabelas do banco. Para mudar o banco, crie um novo arquivo numerado e rode `npm run banco:producao`.
