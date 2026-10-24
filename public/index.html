@@ -28,6 +28,7 @@
     </label>
     <button class="btn btn-primario btn-largo" type="submit">Entrar</button>
     <p id="erro-login" class="msg-erro" hidden></p>
+    <a class="login-demo" href="/?demo">Ver demonstração com dados de exemplo</a>
   </form>
 </section>
 
@@ -49,6 +50,14 @@
   </header>
 
   <main class="conteudo">
+    <div class="faixa-demo" id="faixa-demo" hidden>
+      <span class="ponto-demo"></span>
+      <span class="faixa-texto"><b>Modo demonstração.</b> Os dados são fictícios e as mudanças ficam só neste navegador.</span>
+      <span class="faixa-acoes">
+        <button type="button" class="btn" id="restaurar-demo">Restaurar exemplos</button>
+        <a class="btn" href="/">Sair da demo</a>
+      </span>
+    </div>
     <div class="cabecalho">
       <div>
         <p class="sobretitulo" id="sobretitulo"></p>
@@ -107,6 +116,7 @@
   </defs>
 </svg>
 
+<script src="/demo.js"></script>
 <script src="/app.js"></script>
 </body>
 </html>
